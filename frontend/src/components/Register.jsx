@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import styled from "styled-components";
+import axios from "axios";
 
 const RegisterContainer = styled.div`
   background: #0047ff;
@@ -56,7 +57,7 @@ const StyledForm = styled(Form)`
 const Register = () => {
   const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
-    fullName: "",
+    fullname: "",
     email: "",
     password: "",
   });
@@ -71,12 +72,12 @@ const Register = () => {
     setError(null);
 
     const frontNames = {
-      fullName: "username",
+      fullname: "username",
       email: "email",
       password: "password",
     };
 
-    const mustHave = ["fullName", "email", "password"];
+    const mustHave = ["fullname", "email", "password"];
 
     const missing = mustHave.filter((e) => !formData[e]);
 
@@ -95,9 +96,19 @@ const Register = () => {
       setError(message);
       return;
     }
+    axios
+      .post("http://localhost:3001/users/register", formData)
+      .then((response) => {
+        if (response.status === 201) {
+          console.log(response);
+          console.log("succesful registration");
+        }
+      })
+      .catch((error) => {
+        console.error("Error registering user:", error);
+      });
 
-    // Aquí puedes agregar la lógica para manejar el envío del formulario
-    console.log("Formulario enviado:", formData);
+    console.log(formData);
   };
 
   return (
@@ -116,8 +127,8 @@ const Register = () => {
             <Form.Control
               type="text"
               placeholder="Full Name"
-              name="fullName"
-              value={formData.fullName}
+              name="fullname"
+              value={formData.fullname}
               onChange={handleChange}
             />
           </Form.Group>
