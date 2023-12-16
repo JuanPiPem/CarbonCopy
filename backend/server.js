@@ -5,6 +5,7 @@ const routes = require("./routes/index.routes");
 const morgan = require("morgan");
 const cors = require("cors");
 const db = require("./db");
+const envs = require("./config/envs");
 
 app.use(morgan("dev"));
 app.use(
