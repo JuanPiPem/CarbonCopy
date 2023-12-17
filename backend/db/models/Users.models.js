@@ -6,6 +6,11 @@ class User extends Model {
   hash(password, salt) {
     return bcrypt.hash(password, salt);
   }
+  validatePassword(password) {
+    return this.hash(password, this.salt).then(
+      (newHash) => newHash === this.password
+    );
+  }
 }
 
 User.init(
@@ -28,10 +33,14 @@ User.init(
     salt: {
       type: DataTypes.STRING,
     },
-    // token: {
-    //   type: DataTypes.TEXT,
-    //   allowNull: true,
-    // },
+    token: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    confirmed: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
   },
   { sequelize: db, modelName: "user" }
 );

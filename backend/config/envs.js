@@ -1,6 +1,6 @@
 module.exports = {
   NAME: "Auth",
-  PORT: 8000,
-  DB_HOST: "auth",
+  PORT: 3001,
+  DB_HOST: "carbon",
   SECRET: process.env.SECRET || "NAPOLITANA",
 };
