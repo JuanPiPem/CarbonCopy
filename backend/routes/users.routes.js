@@ -18,11 +18,8 @@ router.get("/", (req, res) => {
 router.post("/register", (req, res) => {
   const { fullname, email, password } = req.body;
   User.create({ fullname: fullname, email, password })
+
     .then((newUser) => {
-      const confirmationLink = `http://localhost:3001/confirm/${newUser.id}`;
-      return sendConfirmationEmail(email, confirmationLink);
-    })
-    .then(() => {
       res.status(201).send(newUser);
     })
 
@@ -30,23 +27,6 @@ router.post("/register", (req, res) => {
       res.status(404).send({ error: "Could not find the user." });
     });
 });
-
-function sendConfirmationEmail(email, confirmationLink) {
-  return transporter
-    .sendMail({
-      from: process.env.EMAIL_NODEMAILER,
-      to: email,
-      subject: "Confirmación de registro",
-      html: `<p>Haz clic en el siguiente enlace para confirmar tu registro: <a href="${confirmationLink}">${confirmationLink}</a></p>`,
-    })
-    .then(() => {
-      console.log("Confirmation email sent successfully.");
-    })
-    .catch((error) => {
-      console.error("Error sending confirmation email:", error);
-      throw new Error("Could not send confirmation email.");
-    });
-}
 
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
@@ -78,26 +58,6 @@ router.post("/login", (req, res) => {
 
 router.get("/me", validateAuth, (req, res) => {
   res.send(req.user);
-});
-
-router.get("/confirm/:userId", (req, res) => {
-  const userId = req.params.userId;
-
-  User.findByPk(userId)
-    .then((user) => {
-      if (!user) {
-        return res.status(404).send({ error: "User not found." });
-      }
-
-      return user.update({ confirmed: true });
-    })
-    .then(() => {
-      res.send("Registro confirmado correctamente.");
-    })
-    .catch((error) => {
-      console.error("Error during confirmation:", error);
-      res.status(500).send({ error: "Could not confirm registration." });
-    });
 });
 
 module.exports = router;
