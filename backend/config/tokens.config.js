@@ -3,7 +3,7 @@ const { SECRET } = require("./envs");
 
 const generateToken = (payload, duration) => {
   const token = jwt.sign({ user: payload }, SECRET, {
-    expiresIn: 400,
+    expiresIn: `${duration}`,
   });
   return token;
 };

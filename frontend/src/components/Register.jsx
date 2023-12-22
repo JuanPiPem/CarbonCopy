@@ -7,9 +7,11 @@ import {
   Title,
   ErrorText,
 } from "../styles";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
     fullname: "",
@@ -57,6 +59,7 @@ const Register = () => {
         if (response.status === 201) {
           console.log(response);
           console.log("succesful registration");
+          navigate("/login");
         }
       })
       .catch((error) => {
