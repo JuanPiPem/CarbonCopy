@@ -1,95 +1,84 @@
 import React from "react";
-import styled from "styled-components";
-
-const MainContainer = styled.div`
-  background: #0047ff;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #ffffff;
-`;
-
-const Header = styled.div`
-  width: 100%;
-  text-align: center;
-  margin-top: 50px;
-`;
-
-const Title = styled.h1`
-  color: white;
-`;
-
-const Subtitle = styled.p`
-  color: white;
-  margin-top: 20px;
-`;
-
-const Navbar = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  margin-top: 30px;
-`;
-
-const ScrollDown = styled.select`
-  width: 30%;
-  padding: 10px;
-  border-radius: 5px;
-  // Agrega otros estilos según tus necesidades
-`;
-
-const ColorPicker = styled.select`
-  width: 10%;
-  padding: 10px;
-  border-radius: 5px;
-  // Agrega otros estilos según tus necesidades
-`;
-
-const IconsContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  margin-top: 20px;
-`;
-
-const Icon = styled.div`
-  width: 40px;
-  height: 40px;
-  background: #ffffff;
-  margin-left: 10px;
-  // Agrega otros estilos según tus necesidades
-`;
-
-const BoardContainer = styled.div`
-  width: 100%;
-  height: 50%;
-  border: 2px solid white;
-  margin-top: 20px;
-`;
+import { Dropdown, InputGroup } from "react-bootstrap";
+import {
+  RegisterContainer,
+  FormContainer,
+  Title,
+  StyledDropdown,
+  LargeInput,
+} from "../styles";
 
 const Home = () => {
   return (
-    <MainContainer>
-      <Header>
-        <Title>Copy Carbon</Title>
-        <Subtitle>Give style to your code</Subtitle>
-      </Header>
-      <Navbar>
-        <ScrollDown>{/* Opciones del scroll down */}</ScrollDown>
-        <ScrollDown>{/* Opciones del scroll down */}</ScrollDown>
-        <ColorPicker>{/* Opciones del color picker */}</ColorPicker>
-        <IconsContainer>
-          <Icon>{/* Icono para downloads */}</Icon>
-          <Icon>{/* Icono para favoritos */}</Icon>
-          <Icon>{/* Icono para dark mode */}</Icon>
-          <Icon>{/* Icono para perfil de usuario */}</Icon>
-        </IconsContainer>
-      </Navbar>
-      <BoardContainer>
-        {/* Aquí puedes implementar el componente para escribir código */}
-      </BoardContainer>
-    </MainContainer>
+    <RegisterContainer>
+      <FormContainer style={{ backgroundColor: "rgb(13, 110, 253, 51%)" }}>
+        <hr />
+        <Title>Carbon Copy</Title>
+
+        <p>Give style to your code</p>
+
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          {/* Dropdowns */}
+          <div style={{ display: "flex" }}>
+            <StyledDropdown>
+              <Dropdown>
+                <Dropdown.Toggle variant="primary" id="style-dropdown">
+                  Style
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item>Action</Dropdown.Item>
+                  <Dropdown.Item>Another action</Dropdown.Item>
+                  <Dropdown.Item>Something else</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </StyledDropdown>
+
+            <StyledDropdown>
+              <Dropdown>
+                <Dropdown.Toggle variant="primary" id="style-dropdown">
+                  Format
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item>Action</Dropdown.Item>
+                  <Dropdown.Item>Another action</Dropdown.Item>
+                  <Dropdown.Item>Something else</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </StyledDropdown>
+
+            <StyledDropdown style={{ fontSize: "14px" }}>
+              <Dropdown>
+                <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                  Color
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item>Action</Dropdown.Item>
+                  <Dropdown.Item>Another action</Dropdown.Item>
+                  <Dropdown.Item>Something else</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </StyledDropdown>
+          </div>
+
+          {/* Iconos */}
+          <div style={{ display: "flex", gap: "10px" }}>
+            <i className="fas fa-sun">1</i> {/* Ícono para Dark Mode */}
+            <i className="fas fa-heart">2</i> {/* Ícono para Favoritos */}
+            <i className="fas fa-user">3</i> {/* Ícono para Perfil */}
+            <i className="fas fa-download">4</i> {/* Ícono para Descargar */}
+          </div>
+        </div>
+
+        {/* Input grande */}
+        <InputGroup className="mb-3">
+          <LargeInput
+            placeholder="Large input"
+            aria-label="Large input"
+            aria-describedby="inputGroup-sizing-default"
+          />
+        </InputGroup>
+      </FormContainer>
+    </RegisterContainer>
   );
 };
 

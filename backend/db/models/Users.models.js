@@ -1,6 +1,7 @@
 const { DataTypes, Model } = require("sequelize");
 const db = require("../index");
 const bcrypt = require("bcrypt");
+const FavoritesStyle = require("./FavoritesStyle.model");
 
 class User extends Model {
   hash(password, salt) {
@@ -10,6 +11,10 @@ class User extends Model {
     return this.hash(password, this.salt).then(
       (newHash) => newHash === this.password
     );
+  }
+
+  static associate(models) {
+    User.hasMany(models.FavoritesStyle, { foreignKey: "userId" });
   }
 }
 
@@ -50,9 +55,14 @@ User.beforeSave((user) => {
 
   user.salt = salt;
 
-  return user.hash(user.password, salt).then((hash) => {
-    user.password = hash;
-  });
+  return user
+    .hash(user.password, salt)
+    .then((hash) => {
+      user.password = hash;
+    })
+    .catch((err) => {
+      console.error("Error hashing password:", err);
+    });
 });
 
 module.exports = User;
