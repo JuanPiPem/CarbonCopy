@@ -1,28 +1,25 @@
 import React from "react";
-import { Dropdown, InputGroup } from "react-bootstrap";
-import {
-  RegisterContainer,
-  FormContainer,
-  Title,
-  StyledDropdown,
-  LargeInput,
-} from "../styles";
+import { Dropdown, Form } from "react-bootstrap";
+import { StyledDropdown } from "../styles";
 
 const Home = () => {
   return (
-    <RegisterContainer>
-      <FormContainer style={{ backgroundColor: "rgb(13, 110, 253, 51%)" }}>
-        <hr />
-        <Title>Carbon Copy</Title>
+    <div className="background">
+      <div className="card">
+        <div className="card-top">
+          <h1>Carbon Copy</h1>
+          <h3>Give style to your code</h3>
+        </div>
 
-        <p>Give style to your code</p>
-
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          {/* Dropdowns */}
+        <div className="dropdowns">
           <div style={{ display: "flex" }}>
             <StyledDropdown>
               <Dropdown>
-                <Dropdown.Toggle variant="primary" id="style-dropdown">
+                <Dropdown.Toggle
+                  size="sm"
+                  variant="primary"
+                  id="style-dropdown"
+                >
                   Style
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
@@ -35,7 +32,11 @@ const Home = () => {
 
             <StyledDropdown>
               <Dropdown>
-                <Dropdown.Toggle variant="primary" id="style-dropdown">
+                <Dropdown.Toggle
+                  size="sm"
+                  variant="primary"
+                  id="style-dropdown"
+                >
                   Format
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
@@ -48,7 +49,11 @@ const Home = () => {
 
             <StyledDropdown style={{ fontSize: "14px" }}>
               <Dropdown>
-                <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                <Dropdown.Toggle
+                  size="sm"
+                  variant="primary"
+                  id="dropdown-basic"
+                >
                   Color
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
@@ -68,17 +73,32 @@ const Home = () => {
             <i className="fas fa-download">4</i> {/* Ícono para Descargar */}
           </div>
         </div>
+      </div>
 
-        {/* Input grande */}
-        <InputGroup className="mb-3">
-          <LargeInput
-            placeholder="Large input"
-            aria-label="Large input"
-            aria-describedby="inputGroup-sizing-default"
+      {/* Input grande */}
+      <div className="input-code">
+        <form>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="50"
+            height="10"
+            viewBox="0 0 50 10"
+            fill="none"
+          >
+            <circle cx="5" cy="5" r="5" fill="#F54141" />
+            <circle cx="25" cy="5" r="5" fill="#FFB800" />
+            <circle cx="45" cy="5" r="5" fill="#01FF1A" />
+          </svg>
+          <Form.Control
+            type="text"
+            data-bs-theme="dark"
+            name="code"
+            // value={code}
+            // onChange={handleChange}
           />
-        </InputGroup>
-      </FormContainer>
-    </RegisterContainer>
+        </form>
+      </div>
+    </div>
   );
 };
 

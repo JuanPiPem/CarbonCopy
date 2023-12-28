@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import styles from "../ConfirmEmail.scss";
+import styles from "../styles.scss";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 
@@ -50,11 +50,10 @@ const ConfirmEmail = () => {
             fill="#CC6AFF"
           />
         </svg>
-        <h1 style={{ color: "#a442f1" }}>¡Gracias por confirmar tu cuenta!</h1>
-        <p style={{ textAlign: "center" }}>
-          Ahora puedes iniciar sesión en nuestra página y comenzar a reservar
-          tus turnos
-        </p>
+        <h1 style={{ color: "#a442f1" }}>
+          ¡Thanks you for confirming your account!
+        </h1>
+        <p style={{ textAlign: "center" }}></p>
         <Link
           to="/login"
           className={styles.button}
@@ -62,7 +61,7 @@ const ConfirmEmail = () => {
             textDecoration: "none",
           }}
         >
-          Haz click acá para iniciar sesión
+          Click here to login
         </Link>
       </div>
     </div>
@@ -72,7 +71,7 @@ const ConfirmEmail = () => {
       role="alert"
       style={{ marginTop: "30px" }}
     >
-      ¡Token inválido!
+      ¡Wrong Token!
     </div>
   );
 };
