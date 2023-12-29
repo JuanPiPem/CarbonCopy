@@ -23,9 +23,9 @@ const Home = () => {
                   Style
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item>Action</Dropdown.Item>
-                  <Dropdown.Item>Another action</Dropdown.Item>
-                  <Dropdown.Item>Something else</Dropdown.Item>
+                  <Dropdown.Item>Style 1</Dropdown.Item>
+                  <Dropdown.Item>Style 2</Dropdown.Item>
+                  <Dropdown.Item>Style 3</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </StyledDropdown>
@@ -40,9 +40,9 @@ const Home = () => {
                   Format
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item>Action</Dropdown.Item>
-                  <Dropdown.Item>Another action</Dropdown.Item>
-                  <Dropdown.Item>Something else</Dropdown.Item>
+                  <Dropdown.Item>Format 1</Dropdown.Item>
+                  <Dropdown.Item>Format 2</Dropdown.Item>
+                  <Dropdown.Item>Format 3</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </StyledDropdown>
